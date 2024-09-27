@@ -1,1 +1,0 @@
-// routes to handle user actions (getting user details)

@@ -10,19 +10,21 @@ const PORT = process.env.PORT || 4000;
 
 const app = express();
 
-// allow server to handle requests from client
+// allow server to handle requests from the client
 app.use(cors());
 
-// middleware to parse json in requests
+// middleware to parse json data
 app.use(express.json());
 
 // importing routes
 const authRoutes = require("./routes/auth");
-// const userRoutes = require("./routes/user");
+const taskListRoutes = require("./routes/taskLists");
+const taskRoutes = require("./routes/tasks");
 
 // using the routes
 app.use("/api/auth", authRoutes);
-// app.use("/api/user", userRoutes);
+app.use("/api/taskLists", taskListRoutes);
+app.use("/api/tasks", taskRoutes);
 
 // home route
 app.get("/", (req, res) => {
