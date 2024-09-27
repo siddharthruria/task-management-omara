@@ -35,10 +35,9 @@ const Signup = (props) => {
       // save the auth token and redirect on successful signup
       localStorage.setItem("token", json.authToken);
       navigate("/");
-      props.showAlert("Account created successfully", "success");
+      alert("account created successfully", "success");
     } else {
       alert("email already exitss"); // handle error
-
     }
   };
 
