@@ -29,15 +29,21 @@ const Signup = () => {
         role: role,
       }),
     });
-    const json = await response.json();
+    const responseData = await response.json();
 
-    if (json.success) {
+    if (responseData.success) {
       // save the auth token and redirect on successful signup
-      localStorage.setItem("token", json.authToken);
+      localStorage.setItem("token", responseData.authToken);
       navigate("/");
       alert("account created successfully", "success");
     } else {
       alert("email already exitss"); // handle error
+
+      // **************************************** FIX THIS ISSUE ******************************************
+
+      // --------------------------------------------------------------------------------------------------
+
+      // ------------- HOW MANY LOCALSTORAGE TOKENS ALLOWED, COS SIGNUP TAKIN BACK TO LOGIN AFTER SIGNUP BUTTTON
     }
   };
 
@@ -47,6 +53,7 @@ const Signup = () => {
   };
 
   return (
+    // signup form taken straight from bootstrap website
     <div className="container position-relative">
       <h2 className="position-absolute start-50 translate-middle">
         signup to view your tasks
@@ -115,6 +122,7 @@ const Signup = () => {
           >
             <option value="" disabled selected>
               select your role
+
             </option>
             <option value="admin" defaultValue={credentials.role === "admin"}>
               admin
@@ -124,6 +132,7 @@ const Signup = () => {
             </option>
             <option value="user" defaultValue={credentials.role === "user"}>
               user
+
             </option>
           </select>
         </div>

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 
-const AuthProvider = ({ children }) => {
+const AuthProvider = ({ children }) => { 
   // state to manage auth token
   const [authToken, setAuthToken] = useState(
     localStorage.getItem("token") || null
@@ -23,9 +23,18 @@ const AuthProvider = ({ children }) => {
           "auth-token": authToken,
         },
       })
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            // if server is restarted or token is invalid, clear token
+            setAuthToken(null);
+            navigate("/login");
+            throw new Error("token invalid or server restarted");
+          }
+          return response.json();
+        })
         .then((data) => {
           setUserRole(data.role);
+          navigate("/")
         })
         .catch(() => {
           localStorage.removeItem("token");
@@ -33,7 +42,7 @@ const AuthProvider = ({ children }) => {
           navigate("/login");
         });
     }
-  }, [authToken, navigate]);
+  }, [authToken]);
 
   // handling login click
   const login = (token) => {
@@ -50,7 +59,7 @@ const AuthProvider = ({ children }) => {
   };
 
   return (
-    // create a context to let the mentioned fields be consistent throughtout the application and wrapped it in App.js
+    // create a context to let the mentioned fields be available throughtout the application and wrapped it in App.js
     <AuthContext.Provider value={{ authToken, userRole, login, logout }}>
       {children}
     </AuthContext.Provider>

@@ -20,8 +20,17 @@ router.post(
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
       }
-
       const { name } = req.body;
+      
+      let user = await TaskList.findOne({ name: req.body.name });
+      if (user) {
+        success = false;
+        return res.status(400).json({
+          success,
+          error: "task list already exists",
+        });
+      }
+
       const taskList = new TaskList({
         name,
         createdBy: req.user.id, // the user who is creating the task list (admin/owner)

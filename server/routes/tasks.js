@@ -38,7 +38,6 @@ router.post("/create", fetchUser, async (req, res) => {
       title,
       description,
       dueDate: new Date(req.body.dueDate),
-      // dueDate,
       taskList: taskListId,
       assignedTo,
       status: "not started",
@@ -47,7 +46,7 @@ router.post("/create", fetchUser, async (req, res) => {
     await task.save();
 
     // push the new task ID into the task list
-    taskList.tasks.push(task._id);
+    taskList.tasks.push(task);
     await taskList.save();
 
     res.status(201).json({ success: true, task });
