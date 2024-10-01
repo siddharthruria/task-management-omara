@@ -122,10 +122,18 @@ const Signup = () => {
           >
             <option value="" disabled selected>
               select your role
+
             </option>
-            <option value="admin">admin</option>
-            <option value="owner">owner</option>
-            <option value="user">user</option>
+            <option value="admin" defaultValue={credentials.role === "admin"}>
+              admin
+            </option>
+            <option value="owner" defaultValue={credentials.role === "owner"}>
+              owner
+            </option>
+            <option value="user" defaultValue={credentials.role === "user"}>
+              user
+
+            </option>
           </select>
         </div>
         <div className="d-flex justify-content-center">

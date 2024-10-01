@@ -6,7 +6,7 @@ const fetchUser = require("../middleware/fetchUser");
 
 // ------------------------------- ROUTE 1 -------------------------------
 
-// route (/api/taskLists)
+// route (/api/taskLists/)
 
 // POST -> creating a new task list
 
@@ -47,7 +47,7 @@ router.post(
 
 // ------------------------------- ROUTE 2 -------------------------------
 
-// route (/api/taskLists)
+// route (/api/taskLists/)
 
 // GET -> get all task lists
 
