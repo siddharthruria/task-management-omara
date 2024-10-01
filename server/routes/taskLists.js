@@ -6,7 +6,7 @@ const fetchUser = require("../middleware/fetchUser");
 
 // ------------------------------- ROUTE 1 -------------------------------
 
-// route (/api/taskLists)
+// route (/api/taskLists/)
 
 // POST -> creating a new task list
 
@@ -38,7 +38,7 @@ router.post(
 
 // ------------------------------- ROUTE 2 -------------------------------
 
-// route (/api/taskLists)
+// route (/api/taskLists/)
 
 // GET -> get all task lists
 
@@ -118,7 +118,7 @@ router.put("/:id", fetchUser, async (req, res) => {
 
 router.delete("/:id", fetchUser, async (req, res) => {
   try {
-    let taskList = await TaskList.findByIdAndDelete(req.params.id);
+    let taskList = await TaskList.findById(req.params.id);
 
     if (!taskList) {
       return res.status(404).json({ message: "task list not found" });

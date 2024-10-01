@@ -42,20 +42,9 @@ router.post(
     let user = await User.findOne({ email: req.body.email });
     if (user) {
       success = false;
-      // **************** REMOVE THIS ************************
-      const dataPrev = {
-        user: {
-          id: user.id,
-          role: user.role,
-        },
-      };
-      // **************** REMOVE THIS ************************
-      const responseToken = jwt.sign(dataPrev, JWT_SECRET);
       return res.status(400).json({
         success,
         error: "email already exists",
-        // **************** REMOVE THIS ************************
-        responseToken,
       });
     }
 

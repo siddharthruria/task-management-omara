@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Signup = (props) => {
+const Signup = () => {
   // state to handle user credentials
   const [credentials, setCredentials] = useState({
     name: "",
@@ -114,11 +114,17 @@ const Signup = (props) => {
             required
           >
             <option value="" disabled selected>
-              eelect your role
+              select your role
             </option>
-            <option value="admin">admin</option>
-            <option value="owner">owner</option>
-            <option value="user">user</option>
+            <option value="admin" defaultValue={credentials.role === "admin"}>
+              admin
+            </option>
+            <option value="owner" defaultValue={credentials.role === "owner"}>
+              owner
+            </option>
+            <option value="user" defaultValue={credentials.role === "user"}>
+              user
+            </option>
           </select>
         </div>
         <div className="d-flex justify-content-center">
