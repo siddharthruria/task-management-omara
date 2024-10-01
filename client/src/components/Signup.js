@@ -38,12 +38,6 @@ const Signup = () => {
       alert("account created successfully", "success");
     } else {
       alert("email already exitss"); // handle error
-
-      // **************************************** FIX THIS ISSUE ******************************************
-
-      // --------------------------------------------------------------------------------------------------
-
-      // ------------- HOW MANY LOCALSTORAGE TOKENS ALLOWED, COS SIGNUP TAKIN BACK TO LOGIN AFTER SIGNUP BUTTTON
     }
   };
 
