@@ -5,11 +5,11 @@ import { AuthContext } from "../context/AuthContext";
 const Home = () => {
   const { authToken } = useContext(AuthContext);
   const navigate = useNavigate();
-  useEffect(() => {
-    if (!authToken) {
-      navigate("/login");
-    }
-  }, [authToken, navigate]);
+  // useEffect(() => {
+  //   if (!authToken) {
+  //     navigate("/login");
+  //   }
+  // }, [authToken]);
   return (
     <div className="container my-4">
       <b>
