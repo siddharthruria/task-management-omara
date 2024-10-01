@@ -20,7 +20,7 @@ const TaskSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User", // reference to the User model
   },
-  dueDate: { type: Date, required: true },
+  dueDate: { type: Date, required: true }, 
   taskList: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "TaskList", // reference to the TaskList model

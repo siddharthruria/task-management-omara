@@ -5,12 +5,9 @@ var cors = require("cors");
 
 connectToDB();
 
-// running port for backend
-const PORT = process.env.PORT || 4000;
-
 const app = express();
 
-// allow server to handle requests from the client
+// allow server to handle requests from the client (back and forth)
 app.use(cors());
 
 // middleware to parse json data
@@ -30,6 +27,9 @@ app.use("/api/tasks", taskRoutes);
 app.get("/", (req, res) => {
   res.send("welcome to the express application");
 });
+
+// running port for backend
+const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, () => {
   console.log(`server listening to requests on port: ${PORT}`);

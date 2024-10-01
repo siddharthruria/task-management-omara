@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Signup = (props) => {
+const Signup = () => {
   // state to handle user credentials
   const [credentials, setCredentials] = useState({
     name: "",
@@ -29,15 +29,21 @@ const Signup = (props) => {
         role: role,
       }),
     });
-    const json = await response.json();
+    const responseData = await response.json();
 
-    if (json.success) {
+    if (responseData.success) {
       // save the auth token and redirect on successful signup
-      localStorage.setItem("token", json.authToken);
+      localStorage.setItem("token", responseData.authToken);
       navigate("/");
       alert("account created successfully", "success");
     } else {
       alert("email already exitss"); // handle error
+
+      // **************************************** FIX THIS ISSUE ******************************************
+
+      // --------------------------------------------------------------------------------------------------
+
+      // ------------- HOW MANY LOCALSTORAGE TOKENS ALLOWED, COS SIGNUP TAKIN BACK TO LOGIN AFTER SIGNUP BUTTTON
     }
   };
 
@@ -47,6 +53,7 @@ const Signup = (props) => {
   };
 
   return (
+    // signup form taken straight from bootstrap website
     <div className="container position-relative">
       <h2 className="position-absolute start-50 translate-middle">
         signup to view your tasks
@@ -114,7 +121,7 @@ const Signup = (props) => {
             required
           >
             <option value="" disabled selected>
-              eelect your role
+              select your role
             </option>
             <option value="admin">admin</option>
             <option value="owner">owner</option>

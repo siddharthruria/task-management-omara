@@ -20,8 +20,17 @@ router.post(
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
       }
-
       const { name } = req.body;
+      
+      let user = await TaskList.findOne({ name: req.body.name });
+      if (user) {
+        success = false;
+        return res.status(400).json({
+          success,
+          error: "task list already exists",
+        });
+      }
+
       const taskList = new TaskList({
         name,
         createdBy: req.user.id, // the user who is creating the task list (admin/owner)
@@ -118,7 +127,7 @@ router.put("/:id", fetchUser, async (req, res) => {
 
 router.delete("/:id", fetchUser, async (req, res) => {
   try {
-    let taskList = await TaskList.findByIdAndDelete(req.params.id);
+    let taskList = await TaskList.findById(req.params.id);
 
     if (!taskList) {
       return res.status(404).json({ message: "task list not found" });
