@@ -9,7 +9,7 @@ const AuthProvider = ({ children }) => {
     localStorage.getItem("token") || null
   );
 
-  // state tio manage the user role (admin/owner/user)
+  // state to manage the user role (admin/owner/user)
   const [userRole, setUserRole] = useState(null);
   let navigate = useNavigate();
 

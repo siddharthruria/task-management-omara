@@ -1,6 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import TaskLists from "./TaskLists";
+import Tasks from "./Tasks";
 
 const Home = () => {
   const { authToken } = useContext(AuthContext);
@@ -20,6 +22,8 @@ const Home = () => {
         <br /> i enjoyed building this but am super tired now. thank you for
         giving me the opportunity"
       </b>
+      <TaskLists />
+      <Tasks />
     </div>
   );
 };
